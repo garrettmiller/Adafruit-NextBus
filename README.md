@@ -28,10 +28,10 @@ Acknowledgements:
 Adafruit Raspberry Pi RGB LED Matrix:
 https://github.com/adafruit/rpi-rgb-led-matrix
 
-Adafruit's NextBus:
+Adafruit and PaintYourDragon's NextBus:
 https://github.com/adafruit/Adafruit-NextBus
 
 nhfruchter's pgh-bustime:
 https://github.com/nhfruchter/pgh-bustime
 
-Adapted from Adafruit-NextBus, by Garrett Miller, 2015.
+Adapted from PaintYourDragon's Adafruit-NextBus, by Garrett Miller, 2015.

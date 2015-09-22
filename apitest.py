@@ -11,5 +11,5 @@ from pghbustime import *
 mykey = "API-KEY-GOES-HERE"
 api = BustimeAPI(mykey, _format="xml")
 
-#Pull predictions from the API (nice that it does this for us)
+#Pull predictions from the API for a given stop (nice that it does this for us)
 print api.predictions(stpid=3144)

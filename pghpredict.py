@@ -52,6 +52,7 @@ class predict:
 			self.lastQueryTime = time.time()
 			newList     = []
 			for child in parsed.findall('prd'):      # Build new prediction list
+				#This converts the string object returned from API into epoch time. 
 				predictedTime = time.mktime(datetime.datetime.strptime(child.find('prdtm').text, "%Y%m%d %H:%M:%S").timetuple())
 				#Then do the math, correcting for our timezone from epoch
 				secondsUntilNext = predictedTime - (int(time.time()) - 14400) 

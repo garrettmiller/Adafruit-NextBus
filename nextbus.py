@@ -150,7 +150,6 @@ for x in xrange(tilesAcross):
 			nextPrediction = 0
 
 # Initialization done; loop forever ------------------------------------------
-
 while True:
 
 	# Clear background

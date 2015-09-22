@@ -7,7 +7,7 @@ Python front-end for the NextBus schedule service, for Raspberry Pi, etc, adapte
 Installation:       
 ----------------
 
-sudo pip install ElementTree requests xmltodict pytz pgh-bustime
+sudo pip install ElementTree requests pgh-bustime
 
 
 Files:   

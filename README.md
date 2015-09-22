@@ -3,10 +3,35 @@ Adafruit-NextBus-Pittsburgh
 
 Python front-end for the NextBus schedule service, for Raspberry Pi, etc, adapted for Pittsburgh from Adafruit-NextBus.
 
-apitest.py: Used to test/play around with the API.  Requires your own Port Authority API key.
 
-pghpredict.py: class that handles periodic queries to the Pittsburgh Port Authority API. Imported by other scripts; doesn't do anything on its own.
+Installation:       
+----------------
+
+sudo pip install ElementTree requests xmltodict pytz pgh-bustime
+
+
+Files:   
+----------------
+
+apitest.py: Used to test/play around with the API.  Requires your own Port Authority API key.
 
 nextbus.py: Scrolling marquee using 64x32 RGB LED matrix. Requires rpi-rgb-led-matrix library: https://github.com/adafruit/rpi-rgb-led-matrix
 
-Adapted from Adafruit-NextBus, https://github.com/adafruit/Adafruit-NextBus, by Garrett Miller, 2015.
+pghpredict.py: class that handles periodic queries to the Pittsburgh Port Authority API. Imported by other scripts; doesn't do anything on its own.
+
+Dependencies:  sudo pip install ElementTree requests xmltodict pytz pgh-bustime
+
+
+Acknowledgements:   
+----------------
+
+Adafruit Raspberry Pi RGB LED Matrix:
+https://github.com/adafruit/rpi-rgb-led-matrix
+
+Adafruit's NextBus:
+https://github.com/adafruit/Adafruit-NextBus
+
+nhfruchter's pgh-bustime:
+https://github.com/nhfruchter/pgh-bustime
+
+Adapted from Adafruit-NextBus, by Garrett Miller, 2015.

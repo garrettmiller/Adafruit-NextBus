@@ -1,12 +1,12 @@
-Adafruit-NextBus
+Adafruit-NextBus-Pittsburgh
 ================
 
-Python front-end for the NextBus schedule service, for Raspberry Pi, etc.
+Python front-end for the NextBus schedule service, for Raspberry Pi, etc, adapted for Pittsburgh from Adafruit-NextBus.
 
-routefinder.py: for selecting bus routes/stops for use with the other scripts. Crude textual interface is best used w/terminal with scroll-back ability. Only need to use this for setup, hence the very basic implementation.
+apitest.py: Used to test/play around with the API.  Requires your own Port Authority API key.
 
-predict.py: class that handles periodic queries to the NextBus server. Imported by other scripts; doesn't do anything on its own.
+pghpredict.py: class that handles periodic queries to the Pittsburgh Port Authority API. Imported by other scripts; doesn't do anything on its own.
 
-nextbus-simple.py: Minimal front-end to demonstrate use of predict.py. Prints to cosole every 5 seconds.
+nextbus.py: Scrolling marquee using 64x32 RGB LED matrix. Requires rpi-rgb-led-matrix library: https://github.com/adafruit/rpi-rgb-led-matrix
 
-nextbus-matrix.py: Scrolling marquee using 32x32 RGB LED matrix. Requires rpi-rgb-led-matrix library: https://github.com/adafruit/rpi-rgb-led-matrix
+Adapted from Adafruit-NextBus, https://github.com/adafruit/Adafruit-NextBus, by Garrett Miller, 2015.

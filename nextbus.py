@@ -1,5 +1,9 @@
-# NextBus scrolling marquee display for Adafruit RGB LED matrix (64x32).
-# Requires rgbmatrix.so library: github.com/adafruit/rpi-rgb-led-matrix
+#!/usr/bin/python
+####################################################################
+#nextbus.py                                                        #
+#Adapted from Adafruit-Nextbus using pghbustime.				   #
+#Other code/APIs borrowed are property of their respective authors.#
+####################################################################
 
 import atexit
 import Image
@@ -8,19 +12,15 @@ import ImageFont
 import math
 import os
 import time
-from predict import predict
+from pghpredict import predict #This is our predict library
 from rgbmatrix import Adafruit_RGBmatrix
 
 # Configurable stuff ---------------------------------------------------------
 
-# List of bus lines/stops to predict.  Use routefinder.py to look up
-# lines/stops for your location, copy & paste results here.  The 4th
-# string on each line can then be edited for brevity if desired.
+# List of bus lines/stops to predict.  Format is route, stop, stop prettyname.
 stops = [
-  ( 'actransit', '210', '0702640', 'Ohlone College' ),
-  ( 'actransit', '232', '0704440', 'Fremont BART'   ),
-  ( 'actransit', '210', '0702630', 'Union Landing'  ),
-  ( 'actransit', '232', '0704430', 'NewPark Mall'   ) ]
+  ('71B', '3144', 'Highland Park' ), 
+  ('71D', '3144', 'Hamilton'   ) ]
 
 maxPredictions = 3   # NextBus shows up to 5; limit to 3 for simpler display
 minTime        = 0   # Drop predictions below this threshold (minutes)
@@ -30,7 +30,7 @@ midTime        = 10  # Times less than this are displayed yellow
 width          = 64  # Matrix size (pixels) -- change for different matrix
 height         = 32  # types (incl. tiling).  Other code may need tweaks.
 matrix         = Adafruit_RGBmatrix(32, 2) # rows, chain length
-fps            = 20  # Scrolling speed (ish)
+fps            = 15  # Scrolling speed (ish)
 
 routeColor     = (255, 255, 255) # Color for route labels (usu. numbers)
 descColor      = (110, 110, 110) # " for route direction/description
@@ -71,13 +71,13 @@ tileWidth = font.getsize(
   '88' *  maxPredictions    +          # 2 digits for minutes
   ', ' * (maxPredictions-1) +          # comma+space between times
   ' minutes')[0]                       # 1 space + 'minutes' at end
-w = font.getsize('No Predictions')[0]  # Label when no times are available
+w = font.getsize('No Buses')[0]  # Label when no times are available
 if w > tileWidth:                      # If that's wider than the route
 	tileWidth = w                  # description, use as tile width.
 predictList = []                       # Clear list
 for s in stops:                        # For each item in stops[] list...
 	predictList.append(predict(s)) # Create object, add to predictList[]
-	w = font.getsize(s[1] + ' ' + s[3])[0] # Route label
+	w = font.getsize(s[0] + ' ' + s[2])[0] # Route label
 	if(w > tileWidth):                     # If widest yet,
 		tileWidth = w                  # keep it
 tileWidth += 6                         # Allow extra space between tiles
@@ -91,17 +91,17 @@ class tile:
 
 	def draw(self):
 		x     = self.x
-		label = self.p.data[1] + ' ' # Route number or code
+		label = self.p.data[0] + ' ' # Route number or code
 		draw.text((x, self.y + fontYoffset), label, font=font,
 		  fill=routeColor)
 		x    += font.getsize(label)[0]
-		label = self.p.data[3]       # Route direction/desc
+		label = self.p.data[2]       # Route direction/desc
 		draw.text((x, self.y + fontYoffset), label, font=font,
 		  fill=descColor)
 		x     = self.x
 		if self.p.predictions == []: # No predictions to display
 			draw.text((x, self.y + fontYoffset + 8),
-			  'No Predictions', font=font, fill=noTimesColor)
+			  'No Buses', font=font, fill=noTimesColor)
 		else:
 			isFirstShown = True
 			count        = 0
@@ -150,6 +150,7 @@ for x in xrange(tilesAcross):
 			nextPrediction = 0
 
 # Initialization done; loop forever ------------------------------------------
+
 while True:
 
 	# Clear background
@@ -178,3 +179,4 @@ while True:
 
 	# Offscreen buffer is copied to screen
 	matrix.SetImage(image.im.id, 0, 0)
+	

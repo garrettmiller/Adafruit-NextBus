@@ -6,7 +6,7 @@ Python front-end for the NextBus schedule service, for Raspberry Pi, etc, adapte
 
 Installation (copy-and-paste):       
 ----------------
-
+```
 sudo apt-get install git python-dev python-imaging python-pip
 sudo pip install ElementTree requests pgh-bustime
 cd
@@ -17,8 +17,7 @@ cd ..
 git clone https://github.com/garrettmiller/Adafruit-NextBus-Pittsburgh
 cd Adafruit-NextBus-Pittsburgh
 ln -s ../rpi-rgb-led-matrix/rgbmatrix.so .
-https://github.com/adafruit/rpi-rgb-led-matrix
-
+```
 
 Files:   
 ----------------
